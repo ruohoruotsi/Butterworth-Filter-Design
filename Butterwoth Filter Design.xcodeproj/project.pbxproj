@@ -1,0 +1,234 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D98678A1178E0AD000150018 /* Biquad.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D986789B178E0AA300150018 /* Biquad.cpp */; };
+		D98678A2178E0AD000150018 /* Butterworth.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D986789C178E0AA300150018 /* Butterworth.cpp */; };
+		D98678A4178E0AD000150018 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D986789E178E0AA300150018 /* main.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D94E699E178E0823007F2FFE /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		D94E69A0178E0823007F2FFE /* Butterwoth Filter Design */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Butterwoth Filter Design"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D986789A178E0AA300150018 /* Biquad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Biquad.h; sourceTree = SOURCE_ROOT; };
+		D986789B178E0AA300150018 /* Biquad.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Biquad.cpp; sourceTree = SOURCE_ROOT; };
+		D986789C178E0AA300150018 /* Butterworth.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Butterworth.cpp; sourceTree = SOURCE_ROOT; };
+		D986789D178E0AA300150018 /* Butterworth.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Butterworth.h; sourceTree = SOURCE_ROOT; };
+		D986789E178E0AA300150018 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = SOURCE_ROOT; };
+		D986789F178E0AA300150018 /* catch.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = catch.hpp; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D94E699D178E0823007F2FFE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D94E6997178E0823007F2FFE = {
+			isa = PBXGroup;
+			children = (
+				D94E69A2178E0823007F2FFE /* Butterwoth Filter Design */,
+				D94E69A1178E0823007F2FFE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D94E69A1178E0823007F2FFE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D94E69A0178E0823007F2FFE /* Butterwoth Filter Design */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D94E69A2178E0823007F2FFE /* Butterwoth Filter Design */ = {
+			isa = PBXGroup;
+			children = (
+				D986789A178E0AA300150018 /* Biquad.h */,
+				D986789B178E0AA300150018 /* Biquad.cpp */,
+				D986789D178E0AA300150018 /* Butterworth.h */,
+				D986789C178E0AA300150018 /* Butterworth.cpp */,
+				D986789E178E0AA300150018 /* main.cpp */,
+				D986789F178E0AA300150018 /* catch.hpp */,
+			);
+			path = "Butterwoth Filter Design";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D94E699F178E0823007F2FFE /* Butterwoth Filter Design */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D94E69A9178E0823007F2FFE /* Build configuration list for PBXNativeTarget "Butterwoth Filter Design" */;
+			buildPhases = (
+				D94E699C178E0823007F2FFE /* Sources */,
+				D94E699D178E0823007F2FFE /* Frameworks */,
+				D94E699E178E0823007F2FFE /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Butterwoth Filter Design";
+			productName = "Butterwoth Filter Design";
+			productReference = D94E69A0178E0823007F2FFE /* Butterwoth Filter Design */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D94E6998178E0823007F2FFE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "de'fchild productions";
+			};
+			buildConfigurationList = D94E699B178E0823007F2FFE /* Build configuration list for PBXProject "Butterwoth Filter Design" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D94E6997178E0823007F2FFE;
+			productRefGroup = D94E69A1178E0823007F2FFE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D94E699F178E0823007F2FFE /* Butterwoth Filter Design */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D94E699C178E0823007F2FFE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D98678A1178E0AD000150018 /* Biquad.cpp in Sources */,
+				D98678A2178E0AD000150018 /* Butterworth.cpp in Sources */,
+				D98678A4178E0AD000150018 /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		D94E69A7178E0823007F2FFE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = "";
+			};
+			name = Debug;
+		};
+		D94E69A8178E0823007F2FFE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = "";
+			};
+			name = Release;
+		};
+		D94E69AA178E0823007F2FFE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = "";
+			};
+			name = Debug;
+		};
+		D94E69AB178E0823007F2FFE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D94E699B178E0823007F2FFE /* Build configuration list for PBXProject "Butterwoth Filter Design" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D94E69A7178E0823007F2FFE /* Debug */,
+				D94E69A8178E0823007F2FFE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D94E69A9178E0823007F2FFE /* Build configuration list for PBXNativeTarget "Butterwoth Filter Design" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D94E69AA178E0823007F2FFE /* Debug */,
+				D94E69AB178E0823007F2FFE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D94E6998178E0823007F2FFE /* Project object */;
+}
