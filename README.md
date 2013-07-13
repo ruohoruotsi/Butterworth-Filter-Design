@@ -1,5 +1,5 @@
 ## Butterworth Filter Design
-=========================
+---
 
 Butterworth Filter Design is a collection of C++ classes and an accompanying suite of unit tests for designing high order Butterworth IIR and EQ filters using the bilinear transform. 
 
