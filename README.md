@@ -17,6 +17,27 @@ As with any good audio signal processing toolkit, there are unit tests that prov
 
 The unit tests live in `main.cpp` and are written using the excellent and compact [Catch](https://github.com/philsquared/Catch) test framework for C++ & Objective-C.
 
+### Usage
+The unit tests are a good place to start for a survey of usage. 
+
+For example, to design an 8-tap Butterworth lowpass filter with a cutoff @ 500Hz (which will generate coefficients for 4 biquad filters), running @ 44100Hz, with unity gain (1.0) execute the following:
+
+
+```
+vector <Biquad> coeffs;  // array of biquad filters (for this case, array size = 4 )
+Butterworth butterworth;
+bool designedCorrectly = butterworth.loPass(44100,  // fs
+									  		500,    // freq1
+									  		0,      // freq2. N/A for lowpass
+									  		8, 	    // filter order,
+									  		coeffs, // coefficient array being filled
+									  		1.0);   // overall gain
+```
+
+
+
+												
+
 #### Other filter design repos on GitHub
 * Vinnie Falco	[DSP Filters](https://github.com/vinniefalco/DSPFilters)
 * Mofr	[Butterworth](https://github.com/mofr/Butterworth)

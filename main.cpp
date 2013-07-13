@@ -100,7 +100,7 @@ TEST_CASE("Lowpass filter coefficients", " Verify coefficients for a lowpass fil
 
 	bool designedCorrectly = butterworth.loPass(44100,  // fs
 												500,    // freq1
-												500,    // freq2
+												0,      // freq2. N/A for lowpass
 												filterOrder,
 												coeffs,
 												overallGain);
@@ -201,7 +201,7 @@ TEST_CASE("Highpass filter coefficients", " Verify coefficients for a highpass f
 
 	bool designedCorrectly = butterworth.hiPass(44100,  // fs
 												500,    // freq1
-												500,    // freq2
+												0,      // freq2
 												filterOrder,
 												coeffs,
 												overallGain);
