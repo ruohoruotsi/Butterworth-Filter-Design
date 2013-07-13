@@ -36,9 +36,17 @@ bool designedCorrectly = butterworth.loPass(44100,  // fs
 
 
 
+To generate the same set of coefficients in MATLAB (R14) as a comparison, to double-check our work, execute the following MATLAB commands:
+
+```
+[z, p, k] = butter(8, 500, 's');			% designs a 8-tap lowpass s-domain filter
+[Zd, Pd, Kd] = bilinear(z, p, k, 44100);	% analog-to-digital filter conversion
+[sos, g] = zpk2sos(Zd, Pd, Kd)				% zero-pole-gain form to second-order sections (SOS)
+```
+
 												
 
-#### Other filter design repos on GitHub
+### Other filter design repos on GitHub
 * Vinnie Falco	[DSP Filters](https://github.com/vinniefalco/DSPFilters)
 * Mofr	[Butterworth](https://github.com/mofr/Butterworth)
 
