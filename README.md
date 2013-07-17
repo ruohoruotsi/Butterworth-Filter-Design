@@ -51,9 +51,9 @@ To generate the same set of coefficients in MATLAB (R14) as a comparison, to dou
 * Mofr	[Butterworth](https://github.com/mofr/Butterworth)
 
 ### Terms and Conditions
-Over the course of my work writing audio plugins and music apps, I've written a few different IIR and EQ filter design classes (e.g. RBJ cookbook). These classes are a fresh rewrite and should be considered unoptimized reference code, with an emphasis on clarity (and for pedagogical reasons being able to refer to the textbook, see the math and understand the code). For this reason, in the hope they can be useful, these classes are provided under [GPL v3](http://www.gnu.org/licenses/gpl.html). 
+Over the course of my work writing audio plugins and music apps, I've implemented a few different IIR and EQ filter design classes (e.g. RBJ cookbook). These classes are a fresh rewrite and should be considered unoptimized reference code, with an emphasis on clarity (and for pedagogical reasons being able to refer to the textbook, see the math and understand the code). For this reason, in the hope they can be useful, these classes are provided under [GPL v3](http://www.gnu.org/licenses/gpl.html). 
 
 <br/>
-Butterworth Filter Design - Copyright © 2013 [iroro orife](http://github.com/ruohoruotsi)
+Butterworth Filter Design - Copyright © 2013  &nbsp; [iroro orife](http://github.com/ruohoruotsi)
 
 Source code is provided under [GPL v3](http://www.gnu.org/licenses/gpl.html)
