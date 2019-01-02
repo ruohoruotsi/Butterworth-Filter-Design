@@ -27,11 +27,11 @@ For example, to design an 8-tap Butterworth lowpass filter with a cutoff @ 500Hz
 vector <Biquad> coeffs;  // array of biquad filters (for this case, array size = 4 )
 Butterworth butterworth;
 bool designedCorrectly = butterworth.loPass(44100,  // fs
-									  		500,    // freq1
-									  		0,      // freq2. N/A for lowpass
-									  		8, 	    // filter order,
-									  		coeffs, // coefficient array being filled
-									  		1.0);   // overall gain
+					    500,    // freq1
+					    0,      // freq2. N/A for lowpass
+					    8, 	    // filter order,
+					    coeffs, // coefficient array being filled
+					    1.0);   // overall gain
 ```
 
 
@@ -39,9 +39,9 @@ bool designedCorrectly = butterworth.loPass(44100,  // fs
 To generate the same set of coefficients in MATLAB (R14) as a comparison, to double-check our work, execute the following MATLAB commands:
 
 ```
-[z, p, k] = butter(8, 500, 's');			% designs a 8-tap lowpass s-domain filter
+[z, p, k] = butter(8, 500, 's');		% designs a 8-tap lowpass s-domain filter
 [Zd, Pd, Kd] = bilinear(z, p, k, 44100);	% analog-to-digital filter conversion
-[sos, g] = zpk2sos(Zd, Pd, Kd)				% zero-pole-gain form to second-order sections (SOS)
+[sos, g] = zpk2sos(Zd, Pd, Kd)			% zero-pole-gain form to second-order sections (SOS)
 ```
 
 												
@@ -53,7 +53,6 @@ To generate the same set of coefficients in MATLAB (R14) as a comparison, to dou
 ### Terms and Conditions
 For my [Master's thesis](https://github.com/ruohoruotsi/Riddim), and in the course of work writing audio plugins and music apps, I've implemented a few different IIR and EQ filter design classes (e.g. [RBJ's EQ Cookbook](http://www.musicdsp.org/files/Audio-EQ-Cookbook.txt), Cheby and Butter IIRs). These classes are a fresh rewrite and should be considered unoptimized reference code, with an emphasis on clarity (and for pedagogical reasons, being able to refer to the textbook, see the math and understand the code). For this reason, in the hope they can be useful, these classes are provided under [GPL v3](http://www.gnu.org/licenses/gpl.html). 
 
-<br/>
-Butterworth Filter Design - Copyright © 2013  &nbsp; [iroro orife](http://github.com/ruohoruotsi)
+Butterworth Filter Design - Copyright © 2013 &nbsp; [iroro orife](http://github.com/ruohoruotsi)
 
 Source code is provided under [GPL v3](http://www.gnu.org/licenses/gpl.html)
