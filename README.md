@@ -5,17 +5,24 @@ Butterworth Filter Design is a collection of C++ classes and an accompanying sui
 The generated filter coefficients are split out into cascaded biquad sections, for easy use in any biquad or second-order section (SOS) implementation.
 
 ### Features
-- Lowpass, Highpass, Bandpass and Bandstop IIR & EQ filter design 
-- Low and High Shelving filter design
-- High order Parametric boost/cut EQ filter design
-- Biquad and Biquad Chain implementations (for filtering audio buffers with cascaded biquad sections)
-- Compact, readable and well-commented codebase
+ * Lowpass, Highpass, Bandpass and Bandstop IIR & EQ filter design 
+ * Low and High Shelving filter design
+ * High order Parametric boost/cut EQ filter design
+ *Biquad and Biquad Chain implementations (for filtering audio buffers with cascaded biquad sections)
+ * Compact, readable and well-commented codebase
 
 
 ### Unit tests
 As with any good audio signal processing toolkit, there are unit tests that provide basic proof of correctness. There are currently 6 primary test cases that check 113 different conditions.
 
-The unit tests live in `main.cpp` and are written using the excellent and compact [Catch](https://github.com/philsquared/Catch) test framework for C++ & Objective-C.
+Unit tests live in `main.cpp` and are written using the compact [Catch](https://github.com/philsquared/Catch) test framework for C++.
+
+### Prerequisites
+
+ * [SCONS](http://scons.org) as a cross-platform build system to build, test and run examples. 
+    * On MacOS use [Homebrew](https://brew.sh): `$brew install scons` or [MacPorts](https://www.macports.org) `port install scons`
+    * On Linux: `apt-get install scons`
+ * [libsndfile](http://www.mega-nerd.com/libsndfile): `brew install libsndfile`
 
 ### Usage
 The unit tests are a good place to start for a survey of usage. 
