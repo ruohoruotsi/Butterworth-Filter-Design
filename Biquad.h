@@ -36,6 +36,8 @@ using namespace std;
 // A biquad filter expression:
 // y[n] = b0 * x[n] + b1 * x[n-1] + b2 * x[n-2] + a1 * y[n-1] + a2 * y[n-2];
 
+// DF2T: Direct Form II Transposed, It is one of the standard structures used to implement digital filters, including Butterworth filters.
+
 class Biquad {
     
 public:

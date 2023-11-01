@@ -7,6 +7,7 @@ include_directories(${CMAKE_SOURCE_DIR})
 add_library(butterworth SHARED 
     Butterworth.cpp
     Biquad.cpp
+    conv.cpp
   )
 
 # 编译测试主程序 main
