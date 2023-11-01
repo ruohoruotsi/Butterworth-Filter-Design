@@ -36,6 +36,12 @@
 
 Biquad::Biquad(){
 }
+
+Biquad::Biquad(double b0, double b1, double b2, double a1, double a2):
+    b0(b0),b1(b1),b2(b2),a1(a1),a2(a2)
+{
+}
+
 Biquad::~Biquad(){
 }
 

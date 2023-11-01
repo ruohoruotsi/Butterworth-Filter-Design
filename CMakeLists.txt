@@ -8,6 +8,7 @@ add_library(butterworth SHARED
     Butterworth.cpp
     Biquad.cpp
     conv.cpp
+    sos2tf.cpp
   )
 
 # 编译测试主程序 main
