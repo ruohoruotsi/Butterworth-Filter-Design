@@ -666,7 +666,7 @@ TEST_CASE("Test gain control issue #3"){
     // https://trac.macports.org/browser/trunk/dports/audio/libsndfile/Portfile
     //******************************************************************************
     
-    const char * infilename = "sweep_0_20K.wav" ;
+    const char * infilename = "../../sweep_0_20K.wav" ;
     const char * outfilename = "sweep_0_20K_filtered.wav" ;
     read_write_file(infilename,outfilename);
 }
