@@ -670,3 +670,29 @@ TEST_CASE("Test gain control issue #3"){
     const char * outfilename = "sweep_0_20K_filtered.wav" ;
     read_write_file(infilename,outfilename);
 }
+
+TEST_CASE("Bandpass test") {
+
+    int filterOrder = 4;
+    const double EPSILON = 1.0e-4;
+    double gain;
+    
+    vector <Biquad> coeffs;  // second-order sections (sos)
+    Butterworth butterworth;
+    bool designedCorrectly = butterworth.bandPass(
+                                            100,        // fs
+                                            10,        // freq1
+                                            0.5,         // freq2
+                                            filterOrder,
+                                            coeffs, gain);
+
+    cout << "gain: " << gain << endl;
+    for(int i=0; i<4; i++) {    
+        cout << " === section " << i << " ===" << endl;
+        cout << "\tBiquad parameters b0: " << coeffs[i].b0 << endl;
+        cout << "\tBiquad parameters b1: " << coeffs[i].b1 << endl;
+        cout << "\tBiquad parameters b2: " << coeffs[i].b2 << endl;
+        cout << "\tBiquad parameters a1: " << coeffs[i].a1 << endl;
+        cout << "\tBiquad parameters a2: " << coeffs[i].a2 << endl;
+    }
+}
