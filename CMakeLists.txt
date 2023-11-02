@@ -10,6 +10,8 @@ add_library(butterworth SHARED
     conv.cpp
     sos2tf.cpp
   )
+# 添加编译选项，按位置无关代码编译
+target_compile_options(butterworth PRIVATE -fPIC)
 
 # 编译测试主程序 main
 add_executable(test-main main.cpp)
