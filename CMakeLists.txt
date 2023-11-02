@@ -20,13 +20,14 @@ set(CMAKE_TOOLCHAIN_FILE ${CMAKE_SOURCE_DIR}/toolchain-arm64.cmake)
 
 include_directories(${CMAKE_SOURCE_DIR})
 
-# lib_comfort库
-add_library(butterworth SHARED 
+# 生产动态库
+add_library(butterworth STATIC
     Butterworth.cpp
     Biquad.cpp
     conv.cpp
     sos2tf.cpp
   )
+
 # 添加编译选项，按位置无关代码编译
 target_compile_options(butterworth PRIVATE -fPIC)
 
