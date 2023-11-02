@@ -30,10 +30,6 @@ add_library(butterworth SHARED
 # 添加编译选项，按位置无关代码编译
 target_compile_options(butterworth PRIVATE -fPIC)
 
-# 编译测试主程序 main
-add_executable(test-main main.cpp)
-target_link_libraries(test-main PRIVATE butterworth -lsndfile)
-
 # 添加测试
 enable_testing()
 add_subdirectory(tests)
