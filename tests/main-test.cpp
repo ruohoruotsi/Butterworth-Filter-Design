@@ -785,3 +785,46 @@ TEST_CASE("Butter-Worth Filter Design Output Transfer Function Coefficients", "V
         REQUIRE(abs(a[i] - ma[i]) <= EPSILON);
     }
 }
+
+TEST_CASE("200Hz Fs Butter-Worth Filter Design Output Transfer Function Coefficients", "Verify coefficients with matlab values") 
+{
+    int filterOrder = 4;
+    double gain = 1.0;
+    double Fs = 200;
+    double fp1 = 0.5;
+    double fs1 = 10;
+    
+    vector <Biquad> coeffs;  // second-order sections (sos)
+    Butterworth butterworth;
+
+    bool designedCorrectly = butterworth.bandPass(Fs,             // fs
+                                                fp1,            // freq1
+                                                fs1,            // freq2. N/A for lowpass
+                                                filterOrder,
+                                                coeffs,
+                                                gain);
+    REQUIRE(designedCorrectly == true);
+
+    // Inverse sign of a1, a2
+    // Because we dont know why Butterworth class always gets negative of a1 and a2
+    for (int i=0; i<coeffs.size(); i++) {
+        coeffs[i].a1 = -coeffs[i].a1;
+        coeffs[i].a2 = -coeffs[i].a2;
+    }
+    // To convert to Transfer Function coefficients
+    vectord b, a;
+    sos2tf(coeffs, gain, b, a);
+
+    // matlab b,a
+    vectord mb = {0.000345336118288585,	0,	-0.00138134447315434,	0,	0.00207201670973151,	0,	-0.00138134447315434,	0,	0.000345336118288585};
+    vectord ma = {1,	-7.20352120814339,	22.7418538762770,	-41.1052184923506,	46.5299389200193,	-33.7811112566772,	15.3620281161022,	-4.00086041431683,	0.456890459501862};
+
+    const double EPSILON = 1E-4;
+
+    for (int i = 0; i < b.size(); i++)
+    {
+        CAPTURE(i)
+        REQUIRE(abs(b[i] - mb[i]) <= EPSILON);
+        REQUIRE(abs(a[i] - ma[i]) <= EPSILON);
+    }
+}
