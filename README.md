@@ -10,7 +10,8 @@ The generated filter coefficients are split out into cascaded biquad sections, f
  * High order Parametric boost/cut EQ filter design
  *Biquad and Biquad Chain implementations (for filtering audio buffers with cascaded biquad sections)
  * Compact, readable and well-commented codebase
-
+ * Convert from SOS to Transfer Function coefficients
+ * Convoluttion function
 
 ### Unit tests
 As with any good audio signal processing toolkit, there are unit tests that provide basic proof of correctness. There are currently 6 primary test cases that check 113 different conditions.
@@ -19,9 +20,7 @@ Unit tests live in `main.cpp` and are written using the compact [Catch](https://
 
 ### Prerequisites
 
- * [SCONS](http://scons.org) as a cross-platform build system to build, test and run examples. 
-    * On MacOS use [Homebrew](https://brew.sh): `$brew install scons` or [MacPorts](https://www.macports.org) `port install scons`
-    * On Linux: `apt-get install scons`
+ * cmake
  * [libsndfile](http://www.mega-nerd.com/libsndfile): `brew install libsndfile`
 
 ### Usage
