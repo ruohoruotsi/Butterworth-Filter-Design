@@ -27,6 +27,8 @@
  
  */
 
+#ifndef BIQUAD_H
+#define BIQUAD_H
 
 #include <vector>
 #include <complex>
@@ -96,3 +98,5 @@ private:
     
     void allocate(int count);
 };
+
+#endif

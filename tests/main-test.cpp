@@ -30,8 +30,10 @@
 
 #include <iostream>
 #include <sndfile.hh>
+
 #include "Butterworth.h"
 #include "sos2tf.hpp"
+#include "conv.hpp"
 
 #define CATCH_CONFIG_MAIN   // Tells Catch to provide a main()
 #include "catch.hpp"        // Catch Unit test framework
@@ -698,11 +700,10 @@ TEST_CASE("Bandpass test") {
     }
 }
 
-
-const double EPSILON = 1E-4;
-
 TEST_CASE("Convolution u and v", " Verify convolution is correct")
 {
+    const double EPSILON = 1E-4;
+
     vectord u = {1, 2, 3, 4, 5};
     vectord v = {1, 2, 3};
     vectord c;
@@ -717,6 +718,8 @@ TEST_CASE("Convolution u and v", " Verify convolution is correct")
 
 TEST_CASE("SOS To Transfer Function coefficients", " Verify coefficients is correct")
 {
+    const double EPSILON = 1E-4;
+
     vector<Biquad> sos(4);
     sos[0] = Biquad(1, 2, 1, -1.11879834477625, 0.336688180692519);
     sos[1] = Biquad(1, 2, 1, -1.35028339447298, 0.660543824885074);
