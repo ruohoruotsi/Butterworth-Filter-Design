@@ -29,7 +29,7 @@ add_library(butterworth STATIC
   )
 
 # 添加编译选项，按位置无关代码编译
-# target_compile_options(butterworth PRIVATE -fPIC)
+target_compile_options(butterworth PRIVATE -fPIC)
 
 # 添加测试
 enable_testing()
