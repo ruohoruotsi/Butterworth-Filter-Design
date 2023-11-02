@@ -51,7 +51,24 @@ To generate the same set of coefficients in MATLAB (R14) as a comparison, to dou
 [sos, g] = zpk2sos(Zd, Pd, Kd)			% zero-pole-gain form to second-order sections (SOS)
 ```
 
-												
+#### To convert from SOS to Transfer Function Form
+
+The Butterworth class get the Second Order Sections form coefficients of the Butter-Worth filter bank, but you can use `sos2tf()` to get the Transfer Function coefficients.
+
+```
+vector <Biquad> coeffs;  // array of biquad filters (for this case, array size = 4 )
+Butterworth butterworth;
+bool designedCorrectly = butterworth.loPass(44100,  // fs
+					    500,    // freq1
+					    0,      // freq2. N/A for lowpass
+					    8, 	    // filter order,
+					    coeffs, // coefficient array being filled
+					    1.0);   // overall gain
+// get Transfer Function coefficients
+vectord b, a;
+sos2tf(coeffs, gain, b, a);
+// you can use b and a now.
+```
 
 ### Other filter design repos on GitHub
 * Vinnie Falco	[DSP Filters](https://github.com/vinniefalco/DSPFilters)
