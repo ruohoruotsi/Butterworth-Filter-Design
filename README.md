@@ -10,7 +10,8 @@ The generated filter coefficients are split out into cascaded biquad sections, f
  * High order Parametric boost/cut EQ filter design
  *Biquad and Biquad Chain implementations (for filtering audio buffers with cascaded biquad sections)
  * Compact, readable and well-commented codebase
-
+ * Convert from SOS to Transfer Function coefficients
+ * Convoluttion function
 
 ### Unit tests
 As with any good audio signal processing toolkit, there are unit tests that provide basic proof of correctness. There are currently 6 primary test cases that check 113 different conditions.
@@ -19,9 +20,7 @@ Unit tests live in `main.cpp` and are written using the compact [Catch](https://
 
 ### Prerequisites
 
- * [SCONS](http://scons.org) as a cross-platform build system to build, test and run examples. 
-    * On MacOS use [Homebrew](https://brew.sh): `$brew install scons` or [MacPorts](https://www.macports.org) `port install scons`
-    * On Linux: `apt-get install scons`
+ * cmake
  * [libsndfile](http://www.mega-nerd.com/libsndfile): `brew install libsndfile`
 
 ### Usage
@@ -51,7 +50,24 @@ To generate the same set of coefficients in MATLAB (R14) as a comparison, to dou
 [sos, g] = zpk2sos(Zd, Pd, Kd)			% zero-pole-gain form to second-order sections (SOS)
 ```
 
-												
+#### To convert from SOS to Transfer Function Form
+
+The Butterworth class get the Second Order Sections form coefficients of the Butter-Worth filter bank, but you can use `sos2tf()` to get the Transfer Function coefficients.
+
+```
+vector <Biquad> coeffs;  // array of biquad filters (for this case, array size = 4 )
+Butterworth butterworth;
+bool designedCorrectly = butterworth.loPass(44100,  // fs
+					    500,    // freq1
+					    0,      // freq2. N/A for lowpass
+					    8, 	    // filter order,
+					    coeffs, // coefficient array being filled
+					    1.0);   // overall gain
+// get Transfer Function coefficients
+vectord b, a;
+sos2tf(coeffs, gain, b, a);
+// you can use b and a now.
+```
 
 ### Other filter design repos on GitHub
 * Vinnie Falco	[DSP Filters](https://github.com/vinniefalco/DSPFilters)

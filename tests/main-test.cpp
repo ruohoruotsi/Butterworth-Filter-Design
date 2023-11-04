@@ -30,7 +30,10 @@
 
 #include <iostream>
 #include <sndfile.hh>
+
 #include "Butterworth.h"
+#include "sos2tf.hpp"
+#include "conv.hpp"
 
 #define CATCH_CONFIG_MAIN   // Tells Catch to provide a main()
 #include "catch.hpp"        // Catch Unit test framework
@@ -666,7 +669,205 @@ TEST_CASE("Test gain control issue #3"){
     // https://trac.macports.org/browser/trunk/dports/audio/libsndfile/Portfile
     //******************************************************************************
     
-    const char * infilename = "sweep_0_20K.wav" ;
+    const char * infilename = "../../sweep_0_20K.wav" ;
     const char * outfilename = "sweep_0_20K_filtered.wav" ;
     read_write_file(infilename,outfilename);
+}
+
+TEST_CASE("Bandpass test") {
+
+    int filterOrder = 4;
+    const double EPSILON = 1.0e-4;
+    double gain;
+    
+    vector <Biquad> coeffs;  // second-order sections (sos)
+    Butterworth butterworth;
+    bool designedCorrectly = butterworth.bandPass(
+                                            100,        // fs
+                                            10,        // freq1
+                                            0.5,         // freq2
+                                            filterOrder,
+                                            coeffs, gain);
+
+    cout << "gain: " << gain << endl;
+    for(int i=0; i<4; i++) {    
+        cout << " === section " << i << " ===" << endl;
+        cout << "\tBiquad parameters b0: " << coeffs[i].b0 << endl;
+        cout << "\tBiquad parameters b1: " << coeffs[i].b1 << endl;
+        cout << "\tBiquad parameters b2: " << coeffs[i].b2 << endl;
+        cout << "\tBiquad parameters a1: " << coeffs[i].a1 << endl;
+        cout << "\tBiquad parameters a2: " << coeffs[i].a2 << endl;
+    }
+}
+
+TEST_CASE("Convolution u and v", " Verify convolution is correct")
+{
+    const double EPSILON = 1E-4;
+
+    vectord u = {1, 2, 3, 4, 5};
+    vectord v = {1, 2, 3};
+    vectord c;
+    conv(u, v, c);
+
+    vectord r = {1, 4, 10, 16, 22, 22, 15};
+    for (size_t i = 0; i < c.size(); i++)
+    {
+        REQUIRE(abs(r[i] - c[i]) <= EPSILON);
+    }
+}
+
+TEST_CASE("SOS To Transfer Function coefficients", " Verify coefficients is correct")
+{
+    const double EPSILON = 1E-4;
+
+    vector<Biquad> sos(4);
+    sos[0] = Biquad(1, 2, 1, -1.11879834477625, 0.336688180692519);
+    sos[1] = Biquad(1, 2, 1, -1.35028339447298, 0.660543824885074);
+    sos[2] = Biquad(1, -2, 1, -1.93859735792819, 0.939736057085694);
+    sos[3] = Biquad(1, -2, 1, -1.97691413926085, 0.977914024909786);
+
+    double gain = 0.00404923315402386;
+
+    vectord b, a;
+    sos2tf(sos, gain, b, a);
+
+    // matlab b,a
+    vectord mb = {0.00404923315402386, 0, -0.0161969326160954, 0, 0.0242953989241431, 0, -0.0161969326160954, 0, 0.00404923315402386};
+    vectord ma = {1, -6.38459323643827, 17.9257353790401, -28.9644589090336, 29.5037393371934, -19.4170269899449, 8.06393935848502, -1.93171376981280, 0.204378907481348};
+
+    for (int i = 0; i < b.size(); i++)
+    {
+        CAPTURE(i)
+        REQUIRE(abs(b[i] - mb[i]) <= EPSILON);
+        REQUIRE(abs(a[i] - ma[i]) <= EPSILON);
+    }
+}
+
+TEST_CASE("100Hz Butter-Worth Band-Pass Filter Design Output Transfer Function Coefficients", "Verify coefficients with matlab values") 
+{
+    int filterOrder = 4;
+    double gain = 1.0;
+    double Fs = 100;
+    double fp1 = 0.5;
+    double fs1 = 10;
+    
+    vector <Biquad> coeffs;  // second-order sections (sos)
+    Butterworth butterworth;
+
+    bool designedCorrectly = butterworth.bandPass(Fs,             // fs
+                                                fp1,            // freq1
+                                                fs1,            // freq2. N/A for lowpass
+                                                filterOrder,
+                                                coeffs,
+                                                gain);
+    REQUIRE(designedCorrectly == true);
+
+    // Inverse sign of a1, a2
+    // Because we dont know why Butterworth class always gets negative of a1 and a2
+    for (int i=0; i<coeffs.size(); i++) {
+        coeffs[i].a1 = -coeffs[i].a1;
+        coeffs[i].a2 = -coeffs[i].a2;
+    }
+    // To convert to Transfer Function coefficients
+    vectord b, a;
+    sos2tf(coeffs, gain, b, a);
+
+    // matlab b,a
+    vectord mb = {0.00404923315402386, 0, -0.0161969326160954, 0, 0.0242953989241431, 0, -0.0161969326160954, 0, 0.00404923315402386};
+    vectord ma = {1, -6.38459323643827, 17.9257353790401, -28.9644589090336, 29.5037393371934, -19.4170269899449, 8.06393935848502, -1.93171376981280, 0.204378907481348};
+
+    const double EPSILON = 1E-4;
+
+    for (int i = 0; i < b.size(); i++)
+    {
+        CAPTURE(i)
+        REQUIRE(abs(b[i] - mb[i]) <= EPSILON);
+        REQUIRE(abs(a[i] - ma[i]) <= EPSILON);
+    }
+}
+
+TEST_CASE("200Hz Fs Butter-Worth Band-Pass Filter Design Output Transfer Function Coefficients", "Verify coefficients with matlab values") 
+{
+    int filterOrder = 4;
+    double gain = 1.0;
+    double Fs = 200;
+    double fp1 = 0.5;
+    double fs1 = 10;
+    
+    vector <Biquad> coeffs;  // second-order sections (sos)
+    Butterworth butterworth;
+
+    bool designedCorrectly = butterworth.bandPass(Fs,             // fs
+                                                fp1,            // freq1
+                                                fs1,            // freq2. N/A for lowpass
+                                                filterOrder,
+                                                coeffs,
+                                                gain);
+    REQUIRE(designedCorrectly == true);
+
+    // Inverse sign of a1, a2
+    // Because we dont know why Butterworth class always gets negative of a1 and a2
+    for (int i=0; i<coeffs.size(); i++) {
+        coeffs[i].a1 = -coeffs[i].a1;
+        coeffs[i].a2 = -coeffs[i].a2;
+    }
+    // To convert to Transfer Function coefficients
+    vectord b, a;
+    sos2tf(coeffs, gain, b, a);
+
+    // matlab b,a
+    vectord mb = {0.000345336118288585,	0,	-0.00138134447315434,	0,	0.00207201670973151,	0,	-0.00138134447315434,	0,	0.000345336118288585};
+    vectord ma = {1,	-7.20352120814339,	22.7418538762770,	-41.1052184923506,	46.5299389200193,	-33.7811112566772,	15.3620281161022,	-4.00086041431683,	0.456890459501862};
+
+    const double EPSILON = 1E-4;
+
+    for (int i = 0; i < b.size(); i++)
+    {
+        CAPTURE(i)
+        REQUIRE(abs(b[i] - mb[i]) <= EPSILON);
+        REQUIRE(abs(a[i] - ma[i]) <= EPSILON);
+    }
+}
+
+TEST_CASE("100Hz Fs Butter-Worth LowPass Filter Design Output Transfer Function Coefficients", "Verify coefficients with matlab values") 
+{
+    int filterOrder = 4;
+    double gain = 1.0;
+    double Fs = 100;
+    double fp1 = 0.5;
+    double fs1 = 10;
+    
+    vector <Biquad> coeffs;  // second-order sections (sos)
+    Butterworth butterworth;
+
+    bool designedCorrectly = butterworth.loPass(Fs,             // fs
+                                                fp1,            // freq1
+                                                fs1,            // freq2. N/A for lowpass
+                                                filterOrder,
+                                                coeffs,
+                                                gain);
+    REQUIRE(designedCorrectly == true);
+
+    // Inverse sign of a1, a2
+    // Because we dont know why Butterworth class always gets negative of a1 and a2
+    for (int i=0; i<coeffs.size(); i++) {
+        coeffs[i].a1 = -coeffs[i].a1;
+        coeffs[i].a2 = -coeffs[i].a2;
+    }
+    // To convert to Transfer Function coefficients
+    vectord b, a;
+    sos2tf(coeffs, gain, b, a);
+
+    // matlab b,a
+    vectord mb = {0.00482434335771624,	0.0192973734308650,	0.0289460601462974,	0.0192973734308650,	0.00482434335771624};
+    vectord ma = {1,	-2.36951300718204,	2.31398841441588,	-1.05466540587857,	0.187379492368185};
+
+    const double EPSILON = 1E-4;
+
+    for (int i = 0; i < b.size(); i++)
+    {
+        CAPTURE(i)
+        REQUIRE(abs(b[i] - mb[i]) <= EPSILON);
+        REQUIRE(abs(a[i] - ma[i]) <= EPSILON);
+    }
 }

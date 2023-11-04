@@ -27,6 +27,8 @@
  
  */
 
+#ifndef BIQUAD_H
+#define BIQUAD_H
 
 #include <vector>
 #include <complex>
@@ -36,10 +38,13 @@ using namespace std;
 // A biquad filter expression:
 // y[n] = b0 * x[n] + b1 * x[n-1] + b2 * x[n-2] + a1 * y[n-1] + a2 * y[n-2];
 
+// DF2T: Direct Form II Transposed, It is one of the standard structures used to implement digital filters, including Butterworth filters.
+
 class Biquad {
     
 public:
     Biquad();
+    Biquad(double b0, double b1, double b2, double a1, double a2);
     ~Biquad();
     
     
@@ -93,3 +98,5 @@ private:
     
     void allocate(int count);
 };
+
+#endif
