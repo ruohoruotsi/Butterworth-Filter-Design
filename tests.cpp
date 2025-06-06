@@ -32,8 +32,8 @@
 #include <sndfile.hh>
 #include "Butterworth.h"
 
-#define CATCH_CONFIG_MAIN   // Tells Catch to provide a main()
-#include "catch.hpp"        // Catch Unit test framework
+#include <catch2/catch_all.hpp>     // Catch Unit test framework
+#include <catch2/catch_test_macros.hpp>
 
 using namespace std;
 
