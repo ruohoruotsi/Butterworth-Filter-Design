@@ -15,17 +15,27 @@ The generated filter coefficients are split out into cascaded biquad sections, f
 ### Unit tests
 As with any good audio signal processing toolkit, there are unit tests that provide basic proof of correctness. There are currently 6 primary test cases that check 113 different conditions.
 
-Unit tests live in `main.cpp` and are written using the compact [Catch](https://github.com/philsquared/Catch) test framework for C++.
+Unit tests live in `tests.cpp` and are written using the compact [Catch2](https://github.com/catchorg/Catch2) test framework for C++.
 
 ### Prerequisites
 
- * [SCONS](http://scons.org) as a cross-platform build system to build, test and run examples. 
-    * On MacOS use [Homebrew](https://brew.sh): `$brew install scons` or [MacPorts](https://www.macports.org) `port install scons`
-    * On Linux: `apt-get install scons`
- * [libsndfile](http://www.mega-nerd.com/libsndfile): `brew install libsndfile`
+**MacOS &rarr;**
+ * [Catch2](https://github.com/catchorg/Catch2): `$ brew install catch2`
+ * [libsndfile](http://www.mega-nerd.com/libsndfile): `$ brew install libsndfile`
+
+**Linux &rarr;**
+ * [Catch2](https://github.com/catchorg/Catch2): `$ sudo apt-get update; sudo apt-get install catch2`
+ * [libsndfile](http://www.mega-nerd.com/libsndfile): `$ sudo apt-get install libsndfile1`
+
 
 ### Usage
 The unit tests are a good place to start for a survey of usage. 
+
+```
+    $ cmake ..
+    $ make
+    $ ctest
+ ```
 
 For example, to design an 8-tap Butterworth lowpass filter with a cutoff @ 500Hz (which will generate coefficients for 4 biquad filters), running @ 44100Hz, with unity gain (1.0) execute the following:
 
