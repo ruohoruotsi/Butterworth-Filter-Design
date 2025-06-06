@@ -32,6 +32,8 @@ Unit tests live in `tests.cpp` and are written using the compact [Catch2](https:
 The unit tests are a good place to start for a survey of usage. 
 
 ```
+    $ export LDFLAGS="-L$(brew --prefix libsndfile)/lib"
+    $ export CPPFLAGS="-I$(brew --prefix libsndfile)/include"
     $ cmake ..
     $ make
     $ ctest
